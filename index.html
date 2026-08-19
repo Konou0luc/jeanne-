@@ -1,34 +1,61 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joyeux Anniversaire Jeanne ♥</title>
-    <meta name="description" content="Joyeux Anniversaire Jeanne ! Ma jumelle, une amie si chère. Un petit cadeau spécial fait avec amour et amitié, à garder pour toujours.">
-    <meta name="theme-color" content="#9F2F2D">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
 
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Anniversaire Jeanne">
-    <meta property="og:url" content="https://jeanne-ecru.vercel.app">
-    <meta property="og:title" content="Joyeux Anniversaire Jeanne ♥ Ma Jumelle">
-    <meta property="og:description" content="Un cadeau spécial fait avec amitié pour ma jumelle, à garder pour toute la vie. Pour toi, toujours.">
-    <meta property="og:image" content="assets/jeanne.jpeg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="1500">
-    <meta property="og:image:secure_url" content="assets/jeanne.jpeg">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Joyeux Anniversaire Jeanne ♥ Ma Jumelle">
-    <meta name="twitter:description" content="Un cadeau spécial fait avec amitié pour ma jumelle.">
-    <meta name="twitter:image" content="assets/jeanne.jpeg">
+        <title>Joyeux Anniversaire Jeanne ♥</title>
+
+        <meta name="description"
+            content="Joyeux Anniversaire Jeanne ! Ma jumelle, une amie si chère. Un petit cadeau spécial fait avec amour et amitié, à garder pour toujours.">
+
+        <meta name="theme-color" content="#9F2F2D">
+
+        <link rel="canonical" href="https://jeanne-ecru.vercel.app/">
+
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+        <link rel="apple-touch-icon" href="/favicon.svg">
+        <meta property="og:type" content="website">
+        <meta property="og:locale" content="fr_FR">
+        <meta property="og:site_name" content="Anniversaire Jeanne">
+
+        <meta property="og:url" content="https://jeanne-ecru.vercel.app/">
+
+        <meta property="og:title" content="Joyeux Anniversaire Jeanne ♥ Ma Jumelle">
+
+        <meta property="og:description"
+            content="Un cadeau spécial fait avec amitié pour ma jumelle, à garder pour toute la vie. Pour toi, toujours.">
+
+        <meta property="og:image" content="https://jeanne-ecru.vercel.app/assets/jeanne.jpeg">
+
+        <meta property="og:image:secure_url" content="https://jeanne-ecru.vercel.app/assets/jeanne.jpeg">
+
+        <meta property="og:image:type" content="image/jpeg">
+
+        <meta property="og:image:width" content="1200">
+
+        <meta property="og:image:height" content="1500">
+
+        <meta property="og:image:alt" content="Photo de Jeanne">
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Joyeux Anniversaire Jeanne ♥ Ma Jumelle">
+
+        <meta name="twitter:description" content="Un cadeau spécial fait avec amitié pour ma jumelle.">
+
+        <meta name="twitter:image" content="https://jeanne-ecru.vercel.app/assets/jeanne.jpeg">
+
+        <meta name="twitter:image:alt" content="Photo de Jeanne">
+    </head>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --canvas: #F7F6F3;
@@ -98,9 +125,19 @@
         }
 
         @keyframes drift {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(40px, -30px) scale(1.05); }
-            66% { transform: translate(-30px, 40px) scale(0.95); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(40px, -30px) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-30px, 40px) scale(0.95);
+            }
         }
 
         .container {
@@ -118,8 +155,8 @@
         .fade-in {
             opacity: 0;
             transform: translateY(16px);
-            transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+                transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .fade-in.visible {
@@ -127,24 +164,41 @@
             transform: translateY(0);
         }
 
-        .stagger > * {
+        .stagger>* {
             opacity: 0;
             transform: translateY(12px);
             transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+                transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .stagger.visible > * {
+        .stagger.visible>* {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .stagger.visible > *:nth-child(1) { transition-delay: 0ms; }
-        .stagger.visible > *:nth-child(2) { transition-delay: 80ms; }
-        .stagger.visible > *:nth-child(3) { transition-delay: 160ms; }
-        .stagger.visible > *:nth-child(4) { transition-delay: 240ms; }
-        .stagger.visible > *:nth-child(5) { transition-delay: 320ms; }
-        .stagger.visible > *:nth-child(6) { transition-delay: 400ms; }
+        .stagger.visible>*:nth-child(1) {
+            transition-delay: 0ms;
+        }
+
+        .stagger.visible>*:nth-child(2) {
+            transition-delay: 80ms;
+        }
+
+        .stagger.visible>*:nth-child(3) {
+            transition-delay: 160ms;
+        }
+
+        .stagger.visible>*:nth-child(4) {
+            transition-delay: 240ms;
+        }
+
+        .stagger.visible>*:nth-child(5) {
+            transition-delay: 320ms;
+        }
+
+        .stagger.visible>*:nth-child(6) {
+            transition-delay: 400ms;
+        }
 
         .hero {
             min-height: 100vh;
@@ -297,10 +351,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, 
-                rgba(247, 246, 243, 0) 0%, 
-                rgba(247, 246, 243, 0) 60%,
-                rgba(247, 246, 243, 0.15) 100%);
+            background: linear-gradient(180deg,
+                    rgba(247, 246, 243, 0) 0%,
+                    rgba(247, 246, 243, 0) 60%,
+                    rgba(247, 246, 243, 0.15) 100%);
             pointer-events: none;
         }
 
@@ -875,8 +929,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { box-shadow: 0 4px 16px rgba(159, 47, 45, 0.3); }
-            50% { box-shadow: 0 4px 32px rgba(159, 47, 45, 0.5); }
+
+            0%,
+            100% {
+                box-shadow: 0 4px 16px rgba(159, 47, 45, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 4px 32px rgba(159, 47, 45, 0.5);
+            }
         }
 
         .birthday-celebration {
@@ -913,8 +974,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .birthday-title {
@@ -965,6 +1033,7 @@
                 transform: translateY(0) rotate(0deg);
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(110vh) rotate(720deg);
                 opacity: 0;
@@ -1089,8 +1158,15 @@
         }
 
         @keyframes welcomeScale {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .welcome-avatar {
@@ -1188,6 +1264,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="welcomeOverlay" class="welcome-overlay">
         <div class="welcome-card">
@@ -1226,32 +1303,34 @@
                         <span class="meta-dot"></span>
                         <span class="meta-date">19 Août 2026</span>
                     </div>
-                    
+
                     <h1 class="hero-title">
                         Joyeux<br>
                         Anniversaire<br>
                         <em>Jeanne</em>
                     </h1>
-                    
+
                     <p class="hero-subtitle">
-                        Aujourd'hui est un jour très spécial : c'est l'anniversaire de ma jumelle ! Même si je suis un tout petit peu en retard pour te le souhaiter (oups ! 🙈), tout mon cœur est là. Une année de plus de bonheur, de fous rires et de complicité à célébrer !
+                        Aujourd'hui est un jour très spécial : c'est l'anniversaire de ma jumelle ! Même si je suis un
+                        tout petit peu en retard pour te le souhaiter (oups ! 🙈), tout mon cœur est là. Une année de
+                        plus de bonheur, de fous rires et de complicité à célébrer !
                     </p>
-                    
+
                     <div class="hero-actions">
                         <a href="#letter" class="btn btn-primary">Lire la lettre</a>
                         <a href="#wishes" class="btn btn-secondary">Mes vœux</a>
                     </div>
                 </div>
-                
+
                 <div class="hero-visual fade-in">
                     <div class="deco-line deco-line-1"></div>
                     <div class="deco-line deco-line-2"></div>
-                    
+
                     <div class="photo-frame">
                         <img src="assets/jeanne.jpeg" alt="Jeanne">
                         <div class="photo-grain"></div>
                         <div class="photo-overlay"></div>
-                        
+
                         <div class="age-badge">
                             <span class="age-number" style="font-size: 32px;">👯‍♀️</span>
                             <span class="age-label">Jumelle</span>
@@ -1268,11 +1347,11 @@
                 <div class="section-eyebrow" id="countdownEyebrow">C'est aujourd'hui !</div>
                 <h2 class="section-title" id="countdownTitle">L'heure de célébrer Jeanne 🎉</h2>
                 <p class="section-subtitle" id="countdownSubtitle">
-                    Le grand jour est là pour ma jumelle exceptionnelle. 
+                    Le grand jour est là pour ma jumelle exceptionnelle.
                     Un nouveau chapitre rempli de joie, de réussites et de beaux souvenirs s'ouvre pour toi.
                 </p>
             </div>
-            
+
             <div class="countdown-grid stagger" id="countdownGrid">
                 <div class="countdown-unit">
                     <div class="countdown-number accent" id="days">00</div>
@@ -1297,8 +1376,8 @@
                     <div class="birthday-emoji">🎂✨</div>
                     <h3 class="birthday-title">Joyeux Anniversaire Jeanne !</h3>
                     <p class="birthday-text">
-                        Aujourd'hui, on fête ma jumelle adorée ! 
-                        Même si je suis un chouïa en retard (oups 🙈), ce petit coin du web t'est dédié pour toujours. 
+                        Aujourd'hui, on fête ma jumelle adorée !
+                        Même si je suis un chouïa en retard (oups 🙈), ce petit coin du web t'est dédié pour toujours.
                         Profite de chaque seconde, ris aux éclats — tu mérites tout le bonheur du monde !
                     </p>
                 </div>
@@ -1316,47 +1395,52 @@
                     ce qui te rend heureuse, ma jumelle.
                 </p>
             </div>
-            
+
             <div class="wishes-grid stagger">
                 <div class="wish-card">
                     <div class="wish-icon wish-icon-1">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
                         </svg>
                     </div>
                     <h3 class="wish-title">L'Amour & la Joie</h3>
                     <p class="wish-text">
-                        Que ton cœur soit toujours rempli de joie, 
-                        que chaque jour t'apporte son lot de sourires sincères, 
+                        Que ton cœur soit toujours rempli de joie,
+                        que chaque jour t'apporte son lot de sourires sincères,
                         de fous rires et de moments inoubliables avec ceux qui te sont chers.
                     </p>
                 </div>
-                
+
                 <div class="wish-card">
                     <div class="wish-icon wish-icon-2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                         </svg>
                     </div>
                     <h3 class="wish-title">La Réussite</h3>
                     <p class="wish-text">
-                        Que tous tes rêves se concrétisent, que tes 
-                        projets soient couronnés de succès, et que tu te rendes 
+                        Que tous tes rêves se concrétisent, que tes
+                        projets soient couronnés de succès, et que tu te rendes
                         compte chaque jour de la personne géniale et talentueuse que tu es.
                     </p>
                 </div>
-                
+
                 <div class="wish-card">
                     <div class="wish-icon wish-icon-3">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 6v6l4 2" />
                         </svg>
                     </div>
                     <h3 class="wish-title">La Santé & la Sérénité</h3>
                     <p class="wish-text">
-                        Une santé de fer pour accomplir toutes tes envies, 
-                        et une sérénité totale pour savourer chaque instant 
+                        Une santé de fer pour accomplir toutes tes envies,
+                        et une sérénité totale pour savourer chaque instant
                         avec les personnes chères à ton cœur. Tu le mérites tellement !
                     </p>
                 </div>
@@ -1370,33 +1454,43 @@
                 <div class="section-eyebrow">Du fond du cœur</div>
                 <h2 class="section-title">Une lettre pour ma jumelle</h2>
             </div>
-            
+
             <div class="letter-container fade-in">
                 <div class="letter">
                     <div class="letter-greeting">Ma chère Jeanne, ma jumelle,</div>
-                    
+
                     <div class="letter-body">
                         <p>
-                            Aujourd'hui, c'est ton jour ! Et même si je suis un tout petit peu en retard pour te souhaiter un joyeux anniversaire (tu me connais, toujours un léger décalage ! 🙈), il était totalement hors de question pour moi de laisser passer cette journée sans te préparer quelque chose d'unique.
+                            Aujourd'hui, c'est ton jour ! Et même si je suis un tout petit peu en retard pour te
+                            souhaiter un joyeux anniversaire (tu me connais, toujours un léger décalage ! 🙈), il était
+                            totalement hors de question pour moi de laisser passer cette journée sans te préparer
+                            quelque chose d'unique.
                         </p>
-                        
+
                         <p>
-                            Tu es une personne tellement importante dans ma vie. Ma jumelle, celle avec qui tout est plus léger, les rires plus intenses, et la complicité naturelle. Avoir une amie aussi formidable que toi à mes côtés, c'est une vraie chance au quotidien.
+                            Tu es une personne tellement importante dans ma vie. Ma jumelle, celle avec qui tout est
+                            plus léger, les rires plus intenses, et la complicité naturelle. Avoir une amie aussi
+                            formidable que toi à mes côtés, c'est une vraie chance au quotidien.
                         </p>
-                        
+
                         <p>
-                            Pour ton anniversaire, je voulais t'offrir un cadeau qui ne s'efface pas. Pas juste un simple message éphémère, mais ce petit coin d'internet fait main, rien que pour toi. Un endroit où tu pourras revenir n'importe quand pour te rappeler à quel point tu es précieuse et aimée.
+                            Pour ton anniversaire, je voulais t'offrir un cadeau qui ne s'efface pas. Pas juste un
+                            simple message éphémère, mais ce petit coin d'internet fait main, rien que pour toi. Un
+                            endroit où tu pourras revenir n'importe quand pour te rappeler à quel point tu es précieuse
+                            et aimée.
                         </p>
-                        
+
                         <p>
-                            Je te souhaite tout le bonheur de la terre, la réussite dans toutes tes entreprises, une santé étincelante et mille raisons de sourire au quotidien. Merci d'être la jumelle extraordinaire que tu es.
+                            Je te souhaite tout le bonheur de la terre, la réussite dans toutes tes entreprises, une
+                            santé étincelante et mille raisons de sourire au quotidien. Merci d'être la jumelle
+                            extraordinaire que tu es.
                         </p>
-                        
+
                         <p>
                             Joyeux anniversaire Jeanne ! 🎂✨ Profite à fond de ta journée !
                         </p>
                     </div>
-                    
+
                     <div class="letter-signature">
                         <div class="signature-label">Ton jumeau de cœur</div>
                         <div class="signature-name">Avec tout mon amour & amitié ♥</div>
@@ -1411,34 +1505,32 @@
             <div class="song-container fade-in">
                 <div class="song-label">
                     <div class="song-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M9 18V5l12-2v13"/>
-                            <circle cx="6" cy="18" r="3"/>
-                            <circle cx="18" cy="16" r="3"/>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18V5l12-2v13" />
+                            <circle cx="6" cy="18" r="3" />
+                            <circle cx="18" cy="16" r="3" />
                         </svg>
                     </div>
                     <span class="section-eyebrow" style="margin: 0;">Une musique spécialement pour toi</span>
                 </div>
-                
+
                 <h2 class="song-title">
                     Une chanson qui me<br>
                     fait penser à toi.
                 </h2>
-                
+
                 <p class="song-subtitle">
-                    Cette douce mélodie résonne pour toi, ma jumelle. 
+                    Cette douce mélodie résonne pour toi, ma jumelle.
                     Installe-toi et laisse-toi porter par cette chanson spéciale.
                 </p>
-                
+
                 <div class="video-wrapper" style="margin-bottom: 2rem;">
-                    <iframe 
-                        id="youtubeVideoPlayer"
-                        src="https://www.youtube.com/embed/3G8CM-6BZC4?enablejsapi=1&rel=0&playsinline=1" 
-                        title="Chanson pour Jeanne" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
+                    <iframe id="youtubeVideoPlayer"
+                        src="https://www.youtube.com/embed/3G8CM-6BZC4?enablejsapi=1&rel=0&playsinline=1"
+                        title="Chanson pour Jeanne" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                     </iframe>
                 </div>
 
@@ -1446,14 +1538,16 @@
                     <source src="assets/audio_jeanne.mp3" type="audio/mp3">
                     <source src="assets/audio_jeanne.mpeg" type="audio/mpeg">
                 </audio>
-                
+
                 <div class="song-footer">
                     <div class="song-dedication">Dédié à ma jumelle Jeanne, avec tout mon cœur.</div>
-                    <a href="https://www.youtube.com/watch?v=3G8CM-6BZC4" target="_blank" rel="noopener noreferrer" class="song-btn">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                            <polyline points="15 3 21 3 21 9"/>
-                            <line x1="10" y1="14" x2="21" y2="3"/>
+                    <a href="https://www.youtube.com/watch?v=3G8CM-6BZC4" target="_blank" rel="noopener noreferrer"
+                        class="song-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                            <polyline points="15 3 21 3 21 9" />
+                            <line x1="10" y1="14" x2="21" y2="3" />
                         </svg>
                         Ouvrir sur YouTube
                     </a>
@@ -1474,10 +1568,11 @@
     </footer>
 
     <button class="surprise-btn pulsing" id="surpriseBtn" title="Surprise">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z"/>
-            <path d="m8 14 4-4 4 4"/>
-            <path d="M12 10v10"/>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z" />
+            <path d="m8 14 4-4 4 4" />
+            <path d="M12 10v10" />
         </svg>
     </button>
 
@@ -1688,10 +1783,10 @@
         }
 
         // YouTube IFrame Player API pour stopper le son de fond dès que la vidéo tourne
-        window.onYouTubeIframeAPIReady = function() {
+        window.onYouTubeIframeAPIReady = function () {
             new YT.Player('youtubeVideoPlayer', {
                 events: {
-                    'onStateChange': function(event) {
+                    'onStateChange': function (event) {
                         if (event.data === 1 || event.data === 3) { // PLAYING or BUFFERING
                             pauseBgAudio();
                         }
@@ -1708,4 +1803,5 @@
     </script>
     <script src="https://www.youtube.com/iframe_api"></script>
 </body>
+
 </html>
