@@ -1430,24 +1430,33 @@
                     Installe-toi et laisse-toi porter par cette chanson spéciale.
                 </p>
                 
-                <div class="audio-card-wrapper" style="margin: 2rem 0; padding: 2rem; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid rgba(159, 47, 45, 0.15); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-                    <div style="display: flex; align-items: center; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                        <img src="assets/jeanne.jpeg" alt="Jeanne" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #9F2F2D; box-shadow: 0 4px 12px rgba(159, 47, 45, 0.2);">
-                        <div style="text-align: left;">
-                            <div style="font-weight: 700; font-size: 1.2rem; color: #2F3437;">Une chanson pour Jeanne 🎵</div>
-                            <div style="font-size: 0.9rem; color: #666; margin-top: 4px;">Dédiée à ma jumelle adorée</div>
-                        </div>
-                    </div>
-                    
-                    <audio id="bgAudio" controls autoplay loop style="width: 100%; max-width: 500px; margin-top: 1.5rem; border-radius: 30px;">
-                        <source src="assets/audio_jeanne.mp3" type="audio/mp3">
-                        <source src="assets/audio_jeanne.mpeg" type="audio/mpeg">
-                        Votre navigateur ne supporte pas la lecture audio.
-                    </audio>
+                <div class="video-wrapper" style="margin-bottom: 2rem;">
+                    <iframe 
+                        id="youtubeVideoPlayer"
+                        src="https://www.youtube.com/embed/3G8CM-6BZC4?rel=0&playsinline=1" 
+                        title="Chanson pour Jeanne" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
+
+                <audio id="bgAudio" autoplay loop style="display: none;">
+                    <source src="assets/audio_jeanne.mp3" type="audio/mp3">
+                    <source src="assets/audio_jeanne.mpeg" type="audio/mpeg">
+                </audio>
                 
                 <div class="song-footer">
                     <div class="song-dedication">Dédié à ma jumelle Jeanne, avec tout mon cœur.</div>
+                    <a href="https://www.youtube.com/watch?v=3G8CM-6BZC4" target="_blank" rel="noopener noreferrer" class="song-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        Ouvrir sur YouTube
+                    </a>
                 </div>
             </div>
         </div>
