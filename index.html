@@ -1277,10 +1277,10 @@
                 <div class="video-wrapper">
                     <iframe 
                         id="youtubeAudioPlayer"
-                        src="https://www.youtube.com/embed/3G8CM-6BZC4?autoplay=1&enablejsapi=1" 
+                        src="https://www.youtube.com/embed/3G8CM-6BZC4?autoplay=1&mute=0&enablejsapi=1&playsinline=1&controls=1" 
                         title="YouTube video player" 
                         frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         referrerpolicy="strict-origin-when-cross-origin" 
                         allowfullscreen>
                     </iframe>
@@ -1439,17 +1439,30 @@
         });
 
         let musicStarted = false;
-        function startMusic() {
-            if (!musicStarted) {
-                musicStarted = true;
-                const iframe = document.getElementById('youtubeAudioPlayer');
-                if (iframe) {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-                }
+        function playMusicNow() {
+            const iframe = document.getElementById('youtubeAudioPlayer');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
             }
         }
-        document.addEventListener('click', startMusic, { once: true });
-        document.addEventListener('touchstart', startMusic, { once: true });
+
+        // Tente de lancer la musique immédiatement dès le chargement de la page
+        window.addEventListener('load', () => {
+            playMusicNow();
+            setTimeout(playMusicNow, 300);
+            setTimeout(playMusicNow, 800);
+            setTimeout(playMusicNow, 1500);
+        });
+
+        // Déclencheurs de secours au moindre geste utilisateur si le navigateur bloque la lecture automatique sans interaction
+        ['click', 'touchstart', 'mousemove', 'scroll', 'keydown'].forEach(evt => {
+            document.addEventListener(evt, () => {
+                if (!musicStarted) {
+                    musicStarted = true;
+                    playMusicNow();
+                }
+            }, { once: true });
+        });
 
         setTimeout(() => {
             document.querySelectorAll('.hero .fade-in').forEach(el => {
@@ -1457,5 +1470,6 @@
             });
         }, 100);
     </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
