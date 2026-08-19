@@ -1435,6 +1435,7 @@
                     </div>
                     
                     <audio id="bgAudio" controls autoplay loop style="width: 100%; max-width: 500px; margin-top: 1.5rem; border-radius: 30px;">
+                        <source src="assets/audio_jeanne.mp3" type="audio/mp3">
                         <source src="assets/audio_jeanne.mpeg" type="audio/mpeg">
                         Votre navigateur ne supporte pas la lecture audio.
                     </audio>
@@ -1591,39 +1592,61 @@
         const musicIcon = document.getElementById('musicIcon');
         let musicStarted = false;
 
-        function startAudio() {
-            if (bgAudio) {
-                bgAudio.play().then(() => {
-                    musicStarted = true;
-                    if (musicIcon) musicIcon.textContent = '🔊';
-                }).catch((e) => {
-                    console.log('Autoplay prevented:', e);
-                });
-            }
-        }
-
-        function toggleAudio() {
-            if (!bgAudio) return;
-            if (bgAudio.paused) {
-                bgAudio.play();
+        function playMusic() {
+            if (!bgAudio || musicStarted) return;
+            bgAudio.play().then(() => {
+                musicStarted = true;
                 if (musicIcon) musicIcon.textContent = '🔊';
-            } else {
-                bgAudio.pause();
-                if (musicIcon) musicIcon.textContent = '🔇';
-            }
+                if (welcomeOverlay) welcomeOverlay.classList.add('hidden');
+            }).catch((err) => {
+                console.log('Autoplay waiting for user interaction:', err);
+            });
         }
 
+        // Tente de jouer au chargement
+        playMusic();
+        window.addEventListener('load', playMusic);
+        document.addEventListener('DOMContentLoaded', playMusic);
+
+        // Sur n'importe quelle interaction globale
+        ['click', 'touchstart', 'touchend', 'scroll', 'keydown'].forEach(evt => {
+            window.addEventListener(evt, () => {
+                if (!musicStarted) {
+                    playMusic();
+                }
+            }, { passive: true });
+        });
+
+        // Clic sur le bouton de l'écran d'accueil
         if (startBtn) {
-            startBtn.addEventListener('click', () => {
+            startBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 if (welcomeOverlay) welcomeOverlay.classList.add('hidden');
-                startAudio();
+                if (bgAudio) {
+                    bgAudio.play().then(() => {
+                        musicStarted = true;
+                        if (musicIcon) musicIcon.textContent = '🔊';
+                    }).catch(err => console.log(err));
+                }
                 createConfetti();
                 setTimeout(createConfetti, 400);
             });
         }
 
         if (musicToggleBtn) {
-            musicToggleBtn.addEventListener('click', toggleAudio);
+            musicToggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!bgAudio) return;
+                if (bgAudio.paused) {
+                    bgAudio.play().then(() => {
+                        musicStarted = true;
+                        if (musicIcon) musicIcon.textContent = '🔊';
+                    });
+                } else {
+                    bgAudio.pause();
+                    if (musicIcon) musicIcon.textContent = '🔇';
+                }
+            });
         }
 
         setTimeout(() => {
