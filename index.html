@@ -1047,13 +1047,164 @@
                 width: 56px;
                 height: 56px;
                 bottom: 20px;
-                right: 20px;
-                font-size: 20px;
-            }
+        /* Welcome Overlay */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(247, 246, 243, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .welcome-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .welcome-card {
+            background: #FFFFFF;
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(159, 47, 45, 0.15);
+            text-align: center;
+            max-width: 440px;
+            width: 100%;
+            border: 1px solid rgba(159, 47, 45, 0.1);
+            animation: welcomeScale 0.5s ease-out;
+        }
+
+        @keyframes welcomeScale {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .welcome-avatar {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 1.2rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #9F2F2D;
+            box-shadow: 0 8px 20px rgba(159, 47, 45, 0.25);
+        }
+
+        .welcome-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .welcome-tag {
+            display: inline-block;
+            background: #FDEBEC;
+            color: #9F2F2D;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.7rem;
+            color: #2F3437;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .welcome-text {
+            font-size: 0.95rem;
+            color: #787774;
+            margin-bottom: 1.8rem;
+            line-height: 1.5;
+        }
+
+        .welcome-btn {
+            background: #9F2F2D;
+            color: #FFFFFF;
+            border: none;
+            padding: 1rem 1.8rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 8px 25px rgba(159, 47, 45, 0.35);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .welcome-btn:hover {
+            transform: translateY(-2px);
+            background: #852625;
+        }
+
+        .welcome-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Floating Music Toggle Button */
+        .music-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #9F2F2D;
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 15px rgba(159, 47, 45, 0.4);
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: transform 0.2s ease;
+        }
+
+        .music-toggle-btn:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
+    <div id="welcomeOverlay" class="welcome-overlay">
+        <div class="welcome-card">
+            <div class="welcome-avatar">
+                <img src="assets/jeanne.jpeg" alt="Jeanne">
+            </div>
+            <span class="welcome-tag">19 Août 2026 • Ma Jumelle ♥</span>
+            <h1 class="welcome-title">Une surprise pour toi, Jeanne ! ✨</h1>
+            <p class="welcome-text">
+                Un cadeau spécial d'anniversaire fait avec tout mon cœur...<br>
+                Active le son et entre dans ton univers ! 🎵🎂
+            </p>
+            <button id="startExperienceBtn" class="welcome-btn">
+                <span>Ouvrir la surprise & lancer la musique 🎵</span>
+            </button>
+        </div>
+    </div>
+
+    <button class="music-toggle-btn" id="musicToggleBtn" title="Musique">
+        <span id="musicIcon">🎵</span>
+    </button>
+
     <div class="ambient-bg">
         <div class="ambient-blob blob-1"></div>
         <div class="ambient-blob blob-2"></div>
@@ -1434,30 +1585,46 @@
         });
 
         const bgAudio = document.getElementById('bgAudio');
+        const welcomeOverlay = document.getElementById('welcomeOverlay');
+        const startBtn = document.getElementById('startExperienceBtn');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const musicIcon = document.getElementById('musicIcon');
         let musicStarted = false;
 
         function startAudio() {
             if (bgAudio) {
                 bgAudio.play().then(() => {
                     musicStarted = true;
-                }).catch(() => {
-                    // Autoplay policy prevented playback, wait for interaction
+                    if (musicIcon) musicIcon.textContent = '🔊';
+                }).catch((e) => {
+                    console.log('Autoplay prevented:', e);
                 });
             }
         }
 
-        // Démarrage immédiat dès que possible
-        startAudio();
-        window.addEventListener('load', startAudio);
+        function toggleAudio() {
+            if (!bgAudio) return;
+            if (bgAudio.paused) {
+                bgAudio.play();
+                if (musicIcon) musicIcon.textContent = '🔊';
+            } else {
+                bgAudio.pause();
+                if (musicIcon) musicIcon.textContent = '🔇';
+            }
+        }
 
-        // Déclencheur instantané dès la moindre interaction si le navigateur l'exige
-        ['click', 'touchstart', 'scroll', 'mousemove', 'keydown'].forEach(evt => {
-            document.addEventListener(evt, () => {
-                if (!musicStarted) {
-                    startAudio();
-                }
-            }, { once: true });
-        });
+        if (startBtn) {
+            startBtn.addEventListener('click', () => {
+                if (welcomeOverlay) welcomeOverlay.classList.add('hidden');
+                startAudio();
+                createConfetti();
+                setTimeout(createConfetti, 400);
+            });
+        }
+
+        if (musicToggleBtn) {
+            musicToggleBtn.addEventListener('click', toggleAudio);
+        }
 
         setTimeout(() => {
             document.querySelectorAll('.hero .fade-in').forEach(el => {
