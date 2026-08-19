@@ -1433,7 +1433,7 @@
                 <div class="video-wrapper" style="margin-bottom: 2rem;">
                     <iframe 
                         id="youtubeVideoPlayer"
-                        src="https://www.youtube.com/embed/3G8CM-6BZC4?rel=0&playsinline=1" 
+                        src="https://www.youtube.com/embed/3G8CM-6BZC4?enablejsapi=1&rel=0&playsinline=1" 
                         title="Chanson pour Jeanne" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -1663,11 +1663,49 @@
             });
         }
 
+        function pauseBgAudio() {
+            if (bgAudio && !bgAudio.paused) {
+                bgAudio.pause();
+                if (musicIcon) musicIcon.textContent = '🔇';
+            }
+        }
+
+        // Arrêt audio quand le focus passe sur l'iframe YouTube
+        window.addEventListener('blur', () => {
+            setTimeout(() => {
+                if (document.activeElement === document.getElementById('youtubeVideoPlayer')) {
+                    pauseBgAudio();
+                }
+            }, 100);
+        });
+
+        // Arrêt audio lors du clic/toucher du wrapper vidéo YouTube
+        const videoWrapper = document.querySelector('.video-wrapper');
+        if (videoWrapper) {
+            ['click', 'touchstart', 'mousedown'].forEach(evt => {
+                videoWrapper.addEventListener(evt, pauseBgAudio, { capture: true });
+            });
+        }
+
+        // YouTube IFrame Player API pour stopper le son de fond dès que la vidéo tourne
+        window.onYouTubeIframeAPIReady = function() {
+            new YT.Player('youtubeVideoPlayer', {
+                events: {
+                    'onStateChange': function(event) {
+                        if (event.data === 1 || event.data === 3) { // PLAYING or BUFFERING
+                            pauseBgAudio();
+                        }
+                    }
+                }
+            });
+        };
+
         setTimeout(() => {
             document.querySelectorAll('.hero .fade-in').forEach(el => {
                 el.classList.add('visible');
             });
         }, 100);
     </script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
